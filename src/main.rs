@@ -221,6 +221,8 @@ fn main() {
         vec!['.', '.', '.', '.', '8', '.', '.', '7', '9'],
     ]);
     println!("{}", sudoku);
+    let result = longest_consecutive(vec![100, 1, 200, 3, 4, 2]);
+    println!("{}", result);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
@@ -496,4 +498,27 @@ fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
         }
     }
     true
+}
+
+fn longest_consecutive(nums: Vec<i32>) -> i32 {
+    if nums.is_empty() {
+        return 0;
+    };
+    let s: HashSet<i32> = HashSet::from_iter(nums.clone());
+    let mut max_sequence_len = 1;
+    for v in &s {
+        if s.contains(&(v - 1)) {
+            continue;
+        }
+        let mut start = *v;
+        let mut seq = 1;
+        while s.contains(&(start + 1)) {
+            seq += 1;
+            start += 1;
+        }
+        if seq > max_sequence_len {
+            max_sequence_len = seq;
+        }
+    }
+    max_sequence_len
 }
