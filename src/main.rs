@@ -223,6 +223,10 @@ fn main() {
     println!("{}", sudoku);
     let result = longest_consecutive(vec![100, 1, 200, 3, 4, 2]);
     println!("{}", result);
+    let pal = is_palindrome("race a car".to_string());
+    println!("{}", pal);
+    let sum = two_sum_constant_space(vec![2, 7, 11, 15], 9);
+    println!("{:?}", sum);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
@@ -521,4 +525,57 @@ fn longest_consecutive(nums: Vec<i32>) -> i32 {
         }
     }
     max_sequence_len
+}
+
+fn is_palindrome(s: String) -> bool {
+    if s.is_empty() {
+        return true;
+    }
+    let mut i = 0;
+    let new_s = s.as_bytes();
+    let mut j = new_s.len() - 1;
+    while i < j {
+        let left = new_s[i].to_ascii_lowercase();
+        let right = new_s[j].to_ascii_lowercase();
+        if !left.is_ascii_alphanumeric() && !right.is_ascii_alphanumeric() {
+            i += 1;
+            j -= 1;
+            continue;
+        }
+        if !right.is_ascii_alphanumeric() {
+            j -= 1;
+            continue;
+        }
+        if !left.is_ascii_alphanumeric() {
+            i += 1;
+            continue;
+        }
+        if left != right {
+            return false;
+        }
+
+        i += 1;
+        j -= 1;
+    }
+    true
+}
+
+fn two_sum_constant_space(numbers: Vec<i32>, target: i32) -> Vec<i32> {
+    let mut i = 0;
+    let mut j = numbers.len() - 1;
+    while i < j {
+        let curr_sum = numbers[i] + numbers[j];
+        if curr_sum == target {
+            return [(i + 1) as i32, (j + 1) as i32].to_vec();
+        } else if curr_sum > target {
+            j -= 1;
+        } else if curr_sum < target {
+            i += 1;
+        } else {
+            i += 1;
+            j -= 1;
+        };
+    }
+
+    return [0, 0].to_vec();
 }
