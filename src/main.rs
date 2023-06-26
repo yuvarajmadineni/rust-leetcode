@@ -1,6 +1,7 @@
 use std::{
     borrow::{Borrow, BorrowMut},
     cell::RefCell,
+    cmp::min,
     collections::{BinaryHeap, HashMap, HashSet},
     i32::MIN,
     mem::swap,
@@ -229,6 +230,8 @@ fn main() {
     println!("{:?}", sum);
     let tsum = three_sum(vec![-2, 0, 0, 2, 2]);
     println!("{:?}", tsum);
+    let total_water = max_area(vec![1, 8, 6, 2, 5, 4, 8, 3, 7]);
+    println!("total sum: {}", total_water);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
@@ -600,14 +603,10 @@ fn three_sum(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
             }
             if curr + remaining == 0 {
                 res.push([nums[i], nums[j], nums[k]].to_vec());
-                while j < k && nums[j] == nums[j + 1] {
+                j += 1;
+                while j < k && nums[j] == nums[j - 1] {
                     j += 1;
                 }
-                while j < k && nums[k] == nums[k - 1] {
-                    k -= 1;
-                }
-                k -= 1;
-                j += 1;
             }
         }
 
@@ -618,4 +617,21 @@ fn three_sum(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
         k = nums.len() - 1;
     }
     res
+}
+
+fn max_area(height: Vec<i32>) -> i32 {
+    let mut i = 0;
+    let mut j = height.len() - 1;
+    let mut area = 0;
+    while i < j {
+        area = area.max(min(height[i], height[j]) * (j - i) as i32);
+        if height[i] < height[j] {
+            i += 1
+        } else if height[i] > height[j] {
+            j -= 1;
+        } else {
+            i += 1;
+        }
+    }
+    area
 }
