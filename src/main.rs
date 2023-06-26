@@ -227,6 +227,8 @@ fn main() {
     println!("{}", pal);
     let sum = two_sum_constant_space(vec![2, 7, 11, 15], 9);
     println!("{:?}", sum);
+    let tsum = three_sum(vec![-2, 0, 0, 2, 2]);
+    println!("{:?}", tsum);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
@@ -578,4 +580,42 @@ fn two_sum_constant_space(numbers: Vec<i32>, target: i32) -> Vec<i32> {
     }
 
     return [0, 0].to_vec();
+}
+
+fn three_sum(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
+    let mut i = 0;
+    nums.sort();
+    let mut res: Vec<Vec<i32>> = vec![];
+    let mut j = i + 1;
+    let mut k: usize = nums.len() - 1;
+    while i < nums.len() {
+        let curr = nums[i];
+        while j < k {
+            let remaining = nums[j] + nums[k];
+            if curr + remaining > 0 {
+                k -= 1;
+            }
+            if curr + remaining < 0 {
+                j += 1;
+            }
+            if curr + remaining == 0 {
+                res.push([nums[i], nums[j], nums[k]].to_vec());
+                while j < k && nums[j] == nums[j + 1] {
+                    j += 1;
+                }
+                while j < k && nums[k] == nums[k - 1] {
+                    k -= 1;
+                }
+                k -= 1;
+                j += 1;
+            }
+        }
+
+        while i < nums.len() && nums[i] == curr {
+            i += 1;
+        }
+        j = i + 1;
+        k = nums.len() - 1;
+    }
+    res
 }
