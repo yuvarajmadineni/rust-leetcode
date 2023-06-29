@@ -639,24 +639,39 @@ fn max_area(height: Vec<i32>) -> i32 {
 }
 
 fn trap(height: Vec<i32>) -> i32 {
-    let mut left_height = vec![0; height.len()];
-    let mut right_height = vec![0; height.len()];
-    let mut maxl = 0;
-    let mut maxr = 0;
-    for i in 0..height.len() {
-        left_height[i] = maxl;
-        maxl = max(maxl, height[i]);
-    }
+    // let mut left_height = vec![0; height.len()];
+    // let mut right_height = vec![0; height.len()];
+    // let mut maxl = 0;
+    // let mut maxr = 0;
+    // for i in 0..height.len() {
+    //     left_height[i] = maxl;
+    //     maxl = max(maxl, height[i]);
+    // }
 
-    for i in (0..height.len()).rev() {
-        right_height[i] = maxr;
-        maxr = max(maxr, height[i]);
-    }
+    // for i in (0..height.len()).rev() {
+    //     right_height[i] = maxr;
+    //     maxr = max(maxr, height[i]);
+    // }
+
+    // let mut res = 0;
+    // for i in 0..height.len() {
+    //     res = res + max(0, min(left_height[i], right_height[i]) - height[i]);
+    // }
 
     let mut res = 0;
-    for i in 0..height.len() {
-        res = res + max(0, min(left_height[i], right_height[i]) - height[i]);
+    let mut i = 0;
+    let mut j = height.len() - 1;
+    let (mut maxl, mut maxr) = (height[i], height[j]);
+    while i < j {
+        if maxl <= maxr {
+            res += max(0, maxl - height[i]);
+            i = i + 1;
+        } else {
+            res += max(0, maxr - height[j]);
+            j = j - 1;
+        }
+        maxl = maxl.max(height[i]);
+        maxr = maxr.max(height[j]);
     }
-
     res
 }
