@@ -234,6 +234,10 @@ fn main() {
     println!("total sum: {}", total_water);
     let trapsum = trap(vec![4, 2, 0, 3, 2, 5]);
     println!("trapsum: {}", trapsum);
+    let profit = max_profit([7, 6, 4, 3, 1].to_vec());
+    println!("profit: {}", profit);
+    let longest_sub = length_of_longest_substring("aabaab!bb".to_string());
+    println!("longest_substring: {}", longest_sub);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
@@ -674,4 +678,26 @@ fn trap(height: Vec<i32>) -> i32 {
         maxr = maxr.max(height[j]);
     }
     res
+}
+
+fn max_profit(prices: Vec<i32>) -> i32 {
+    let mut max_price = 0;
+    let mut min_price = prices[0];
+    for i in 1..prices.len() {
+        max_price = max_price.max(prices[i] - min_price);
+        min_price = min_price.min(prices[i]);
+    }
+    max_price
+}
+
+fn length_of_longest_substring(s: String) -> i32 {
+    let mut map = HashMap::new();
+    let (mut start_ind, mut max_len) = (0, 0);
+    for (curr_idx, curr_val) in s.chars().enumerate() {
+        if let Some(prev_val) = map.insert(curr_val, curr_idx) {
+            start_ind = start_ind.max(prev_val + 1);
+        }
+        max_len = max_len.max(curr_idx - start_ind + 1);
+    }
+    max_len as i32
 }
