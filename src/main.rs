@@ -1,7 +1,7 @@
 use std::{
     borrow::{Borrow, BorrowMut},
     cell::RefCell,
-    cmp::min,
+    cmp::{max, min},
     collections::{BinaryHeap, HashMap, HashSet},
     i32::MIN,
     mem::swap,
@@ -232,6 +232,8 @@ fn main() {
     println!("{:?}", tsum);
     let total_water = max_area(vec![1, 8, 6, 2, 5, 4, 8, 3, 7]);
     println!("total sum: {}", total_water);
+    let trapsum = trap(vec![4, 2, 0, 3, 2, 5]);
+    println!("trapsum: {}", trapsum);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
@@ -634,4 +636,27 @@ fn max_area(height: Vec<i32>) -> i32 {
         }
     }
     area
+}
+
+fn trap(height: Vec<i32>) -> i32 {
+    let mut left_height = vec![0; height.len()];
+    let mut right_height = vec![0; height.len()];
+    let mut maxl = 0;
+    let mut maxr = 0;
+    for i in 0..height.len() {
+        left_height[i] = maxl;
+        maxl = max(maxl, height[i]);
+    }
+
+    for i in (0..height.len()).rev() {
+        right_height[i] = maxr;
+        maxr = max(maxr, height[i]);
+    }
+
+    let mut res = 0;
+    for i in 0..height.len() {
+        res = res + max(0, min(left_height[i], right_height[i]) - height[i]);
+    }
+
+    res
 }
