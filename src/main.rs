@@ -8,6 +8,10 @@ use std::{
     rc::Rc,
 };
 
+use crate::character_replacement::character_replacement;
+
+pub mod character_replacement;
+
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,
@@ -238,6 +242,8 @@ fn main() {
     println!("profit: {}", profit);
     let longest_sub = length_of_longest_substring("aabaab!bb".to_string());
     println!("longest_substring: {}", longest_sub);
+    let replace = character_replacement("ABAB".to_string(), 2);
+    println!("replace: {}", replace);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
