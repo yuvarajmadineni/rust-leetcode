@@ -10,10 +10,12 @@ use std::{
 
 use crate::character_replacement::character_replacement;
 use crate::check_inclusion::check_inclusion;
+use crate::max_sliding_window::max_sliding_window;
 use crate::min_window::min_window;
 
 pub mod character_replacement;
 pub mod check_inclusion;
+pub mod max_sliding_window;
 pub mod min_window;
 
 #[derive(PartialEq, Eq, Clone, Debug)]
@@ -252,6 +254,9 @@ fn main() {
     println!(" inclusion: {}", inclusion);
     let min_length_window = min_window("aaaaaaaaaaaabbbbbcdd".to_string(), "abcdd".to_string());
     println!("min_length_window: {}", min_length_window);
+    let max_window = max_sliding_window([9, 10, 9, -7, -4, -8, 2, -6].to_vec(), 5);
+    println!("max_window: {:?}", max_window);
+    assert_eq!([10, 10, 9, 2].to_vec(), max_window)
 }
 
 fn find_maximum(arr: &Vec<i32>) {
