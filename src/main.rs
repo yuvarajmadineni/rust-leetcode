@@ -9,8 +9,12 @@ use std::{
 };
 
 use crate::character_replacement::character_replacement;
+use crate::check_inclusion::check_inclusion;
+use crate::min_window::min_window;
 
 pub mod character_replacement;
+pub mod check_inclusion;
+pub mod min_window;
 
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
@@ -244,6 +248,10 @@ fn main() {
     println!("longest_substring: {}", longest_sub);
     let replace = character_replacement("ABAB".to_string(), 2);
     println!("replace: {}", replace);
+    let inclusion = check_inclusion("ab".to_string(), "eidbaooo".to_string());
+    println!(" inclusion: {}", inclusion);
+    let min_length_window = min_window("aaaaaaaaaaaabbbbbcdd".to_string(), "abcdd".to_string());
+    println!("min_length_window: {}", min_length_window);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
