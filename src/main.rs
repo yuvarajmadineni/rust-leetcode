@@ -10,11 +10,13 @@ use std::{
 
 use crate::character_replacement::character_replacement;
 use crate::check_inclusion::check_inclusion;
+use crate::is_valid_paranthesis::is_valid;
 use crate::max_sliding_window::max_sliding_window;
 use crate::min_window::min_window;
 
 pub mod character_replacement;
 pub mod check_inclusion;
+pub mod is_valid_paranthesis;
 pub mod max_sliding_window;
 pub mod min_window;
 
@@ -198,8 +200,8 @@ fn main() {
     println!("{:?}", res);
     let s = find_pivot_index(vec![1, 7, 3, 6, 5, 6]);
     println!("{}", s);
-    let is_valid = is_isomorphic("baba".to_string(), "bala".to_string());
-    println!("{}", is_valid);
+    // let is_valid = is_isomorphic("baba".to_string(), "bala".to_string());
+    // println!("{}", is_valid);
     let is_sub = is_subsequence("axc".to_string(), "ahdbc".to_string());
     println!("{}", is_sub);
     let merged_list =
@@ -256,7 +258,9 @@ fn main() {
     println!("min_length_window: {}", min_length_window);
     let max_window = max_sliding_window([9, 10, 9, -7, -4, -8, 2, -6].to_vec(), 5);
     println!("max_window: {:?}", max_window);
-    assert_eq!([10, 10, 9, 2].to_vec(), max_window)
+    assert_eq!([10, 10, 9, 2].to_vec(), max_window);
+    let vaid_paranthesis = is_valid("()".to_string());
+    println!("vaid_paranthesis: {}", vaid_paranthesis);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
