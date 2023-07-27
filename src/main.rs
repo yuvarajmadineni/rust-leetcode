@@ -13,12 +13,14 @@ use crate::check_inclusion::check_inclusion;
 use crate::is_valid_paranthesis::is_valid;
 use crate::max_sliding_window::max_sliding_window;
 use crate::min_window::min_window;
+use crate::minstack::Minstack;
 
 pub mod character_replacement;
 pub mod check_inclusion;
 pub mod is_valid_paranthesis;
 pub mod max_sliding_window;
 pub mod min_window;
+pub mod minstack;
 
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
@@ -261,6 +263,12 @@ fn main() {
     assert_eq!([10, 10, 9, 2].to_vec(), max_window);
     let vaid_paranthesis = is_valid("()".to_string());
     println!("vaid_paranthesis: {}", vaid_paranthesis);
+    let mut minimum_stack = Minstack::new();
+    minimum_stack.push(2);
+    minimum_stack.push(1);
+    minimum_stack.push(2);
+    let min_ele = minimum_stack.get_min();
+    println!("minimum_stack: {:?} {}", minimum_stack, min_ele);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
