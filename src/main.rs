@@ -11,6 +11,7 @@ use std::{
 use crate::character_replacement::character_replacement;
 use crate::check_inclusion::check_inclusion;
 use crate::eval_rpn::eval_rpn;
+use crate::generate_paranthesis::generate_parenthesis;
 use crate::is_valid_paranthesis::is_valid;
 use crate::max_sliding_window::max_sliding_window;
 use crate::min_window::min_window;
@@ -19,6 +20,7 @@ use crate::minstack::Minstack;
 pub mod character_replacement;
 pub mod check_inclusion;
 pub mod eval_rpn;
+pub mod generate_paranthesis;
 pub mod is_valid_paranthesis;
 pub mod max_sliding_window;
 pub mod min_window;
@@ -199,7 +201,6 @@ fn main() {
     let mut third_node3 = ListNode::new(2);
     // third_node2.next = Some(Box::new(third_node1.clone()));
     println!("node {:?}", node1);
-
     let res = running_sum(vec![1, 2, 3, 4]);
     println!("{:?}", res);
     let s = find_pivot_index(vec![1, 7, 3, 6, 5, 6]);
@@ -273,6 +274,8 @@ fn main() {
     println!("minimum_stack: {:?} {}", minimum_stack, min_ele);
     let eval_res = eval_rpn(["2".to_string()].to_vec());
     println!("eval_res: {:?}", eval_res);
+    let paranthesis = generate_parenthesis(3);
+    println!("{:?}", paranthesis);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
