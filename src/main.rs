@@ -10,6 +10,7 @@ use std::{
 
 use crate::character_replacement::character_replacement;
 use crate::check_inclusion::check_inclusion;
+use crate::daily_temperatures::daily_temperatures;
 use crate::eval_rpn::eval_rpn;
 use crate::generate_paranthesis::generate_parenthesis;
 use crate::is_valid_paranthesis::is_valid;
@@ -19,6 +20,7 @@ use crate::minstack::Minstack;
 
 pub mod character_replacement;
 pub mod check_inclusion;
+pub mod daily_temperatures;
 pub mod eval_rpn;
 pub mod generate_paranthesis;
 pub mod is_valid_paranthesis;
@@ -276,6 +278,8 @@ fn main() {
     println!("eval_res: {:?}", eval_res);
     let paranthesis = generate_parenthesis(3);
     println!("{:?}", paranthesis);
+    let min_temperatures = daily_temperatures([89, 62, 70, 58, 47, 47, 46, 76, 100, 70].to_vec());
+    println!("{:?}", min_temperatures);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
