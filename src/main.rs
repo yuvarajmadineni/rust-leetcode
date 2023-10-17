@@ -8,6 +8,7 @@ use std::{
     rc::Rc,
 };
 
+use crate::car_fleet::car_fleet;
 use crate::character_replacement::character_replacement;
 use crate::check_inclusion::check_inclusion;
 use crate::daily_temperatures::daily_temperatures;
@@ -18,6 +19,7 @@ use crate::max_sliding_window::max_sliding_window;
 use crate::min_window::min_window;
 use crate::minstack::Minstack;
 
+pub mod car_fleet;
 pub mod character_replacement;
 pub mod check_inclusion;
 pub mod daily_temperatures;
@@ -280,6 +282,8 @@ fn main() {
     println!("{:?}", paranthesis);
     let min_temperatures = daily_temperatures([89, 62, 70, 58, 47, 47, 46, 76, 100, 70].to_vec());
     println!("{:?}", min_temperatures);
+    let fleet = car_fleet(10, [6, 8].to_vec(), [3, 2].to_vec());
+    println!("{}", fleet)
 }
 
 fn find_maximum(arr: &Vec<i32>) {
