@@ -1,5 +1,4 @@
 use std::{
-    borrow::{Borrow, BorrowMut},
     cell::RefCell,
     cmp::{max, min},
     collections::{BinaryHeap, HashMap, HashSet},
@@ -15,6 +14,7 @@ use crate::daily_temperatures::daily_temperatures;
 use crate::eval_rpn::eval_rpn;
 use crate::generate_paranthesis::generate_parenthesis;
 use crate::is_valid_paranthesis::is_valid;
+use crate::largest_rectangle_area::largest_rectangle_area;
 use crate::max_sliding_window::max_sliding_window;
 use crate::min_window::min_window;
 use crate::minstack::Minstack;
@@ -26,6 +26,7 @@ pub mod daily_temperatures;
 pub mod eval_rpn;
 pub mod generate_paranthesis;
 pub mod is_valid_paranthesis;
+pub mod largest_rectangle_area;
 pub mod max_sliding_window;
 pub mod min_window;
 pub mod minstack;
@@ -283,7 +284,9 @@ fn main() {
     let min_temperatures = daily_temperatures([89, 62, 70, 58, 47, 47, 46, 76, 100, 70].to_vec());
     println!("{:?}", min_temperatures);
     let fleet = car_fleet(10, [6, 8].to_vec(), [3, 2].to_vec());
-    println!("{}", fleet)
+    println!("{}", fleet);
+    let area = largest_rectangle_area([2, 1, 5, 6, 2, 3].to_vec());
+    println!("max area of rectangle is {}", area);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
