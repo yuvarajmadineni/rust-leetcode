@@ -29,6 +29,7 @@ pub mod generate_paranthesis;
 pub mod is_valid_paranthesis;
 pub mod largest_rectangle_area;
 pub mod max_sliding_window;
+pub mod min_eating_speed;
 pub mod min_window;
 pub mod minstack;
 pub mod search_matrix;
