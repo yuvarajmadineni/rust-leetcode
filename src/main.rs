@@ -18,6 +18,7 @@ use crate::largest_rectangle_area::largest_rectangle_area;
 use crate::max_sliding_window::max_sliding_window;
 use crate::min_window::min_window;
 use crate::minstack::Minstack;
+use crate::search_matrix::search_matrix;
 
 pub mod car_fleet;
 pub mod character_replacement;
@@ -30,6 +31,7 @@ pub mod largest_rectangle_area;
 pub mod max_sliding_window;
 pub mod min_window;
 pub mod minstack;
+pub mod search_matrix;
 
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
@@ -287,6 +289,11 @@ fn main() {
     println!("{}", fleet);
     let area = largest_rectangle_area([2, 1, 5, 6, 2, 3].to_vec());
     println!("max area of rectangle is {}", area);
+    let search_2d_array = search_matrix(
+        vec![vec![1, 3, 5, 7], vec![10, 11, 16, 20], vec![23, 30, 34, 60]],
+        3,
+    );
+    println!("search matrix {}", search_2d_array);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
