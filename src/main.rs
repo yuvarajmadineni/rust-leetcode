@@ -7,7 +7,6 @@ use std::{
     rc::Rc,
 };
 
-use crate::car_fleet::car_fleet;
 use crate::character_replacement::character_replacement;
 use crate::check_inclusion::check_inclusion;
 use crate::daily_temperatures::daily_temperatures;
@@ -19,6 +18,7 @@ use crate::max_sliding_window::max_sliding_window;
 use crate::min_window::min_window;
 use crate::minstack::Minstack;
 use crate::search_matrix::search_matrix;
+use crate::{car_fleet::car_fleet, time_map::TimeMap};
 
 pub mod car_fleet;
 pub mod character_replacement;
@@ -33,6 +33,7 @@ pub mod min_eating_speed;
 pub mod min_window;
 pub mod minstack;
 pub mod search_matrix;
+pub mod time_map;
 
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
@@ -295,6 +296,11 @@ fn main() {
         3,
     );
     println!("search matrix {}", search_2d_array);
+    let mut obj = TimeMap::new();
+    obj.set("love".to_string(), "high".to_string(), 10);
+    obj.set("love".to_string(), "low".to_string(), 20);
+    let ret_2: String = obj.get("love".to_string(), 20);
+    println!("get {:?}", ret_2);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
