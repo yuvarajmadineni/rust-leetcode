@@ -25,6 +25,7 @@ pub mod character_replacement;
 pub mod check_inclusion;
 pub mod daily_temperatures;
 pub mod eval_rpn;
+pub mod find_median_sorted_arrays;
 pub mod generate_paranthesis;
 pub mod is_valid_paranthesis;
 pub mod largest_rectangle_area;
