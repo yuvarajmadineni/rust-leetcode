@@ -36,6 +36,7 @@ pub mod max_sliding_window;
 pub mod min_eating_speed;
 pub mod min_window;
 pub mod minstack;
+pub mod reverse_list;
 pub mod search_matrix;
 pub mod time_map;
 
@@ -307,6 +308,7 @@ fn main() {
     println!("get {:?}", ret_2);
     let median = find_median_sorted_arrays([1, 3].to_vec(), [2].to_vec());
     println!("{}", median);
+    let listNode = 
 }
 
 fn find_maximum(arr: &Vec<i32>) {
