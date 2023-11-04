@@ -7,7 +7,6 @@ use std::{
     rc::Rc,
 };
 
-use crate::character_replacement::character_replacement;
 use crate::check_inclusion::check_inclusion;
 use crate::daily_temperatures::daily_temperatures;
 use crate::eval_rpn::eval_rpn;
@@ -19,6 +18,10 @@ use crate::min_window::min_window;
 use crate::minstack::Minstack;
 use crate::search_matrix::search_matrix;
 use crate::{car_fleet::car_fleet, time_map::TimeMap};
+use crate::{
+    character_replacement::character_replacement,
+    find_median_sorted_arrays::find_median_sorted_arrays,
+};
 
 pub mod car_fleet;
 pub mod character_replacement;
@@ -302,6 +305,8 @@ fn main() {
     obj.set("love".to_string(), "low".to_string(), 20);
     let ret_2: String = obj.get("love".to_string(), 20);
     println!("get {:?}", ret_2);
+    let median = find_median_sorted_arrays([1, 3].to_vec(), [2].to_vec());
+    println!("{}", median);
 }
 
 fn find_maximum(arr: &Vec<i32>) {
