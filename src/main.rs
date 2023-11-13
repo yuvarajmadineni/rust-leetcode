@@ -32,7 +32,9 @@ pub mod find_median_sorted_arrays;
 pub mod generate_paranthesis;
 pub mod is_valid_paranthesis;
 pub mod largest_rectangle_area;
+pub mod linked_list;
 pub mod max_sliding_window;
+pub mod merge_two_lists;
 pub mod min_eating_speed;
 pub mod min_window;
 pub mod minstack;
@@ -116,13 +118,14 @@ impl ListNode {
 
         while list1.is_some() && list2.is_some() {
             let l1 = &mut list1;
-            let l2 = &mut list2;
+            let l2: &mut Option<Box<ListNode>> = &mut list2;
 
-            let tmp = if l1.as_mut().unwrap().val <= l2.as_mut().unwrap().val {
-                l1
-            } else {
-                l2
-            };
+            let tmp: &mut Option<Box<ListNode>> =
+                if l1.as_mut().unwrap().val <= l2.as_mut().unwrap().val {
+                    l1
+                } else {
+                    l2
+                };
             swap(ptr, tmp);
             swap(tmp, &mut ptr.as_mut().unwrap().next);
             ptr = &mut ptr.as_mut().unwrap().next;
@@ -308,7 +311,6 @@ fn main() {
     println!("get {:?}", ret_2);
     let median = find_median_sorted_arrays([1, 3].to_vec(), [2].to_vec());
     println!("{}", median);
-    let listNode = 
 }
 
 fn find_maximum(arr: &Vec<i32>) {
