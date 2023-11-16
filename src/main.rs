@@ -38,6 +38,7 @@ pub mod merge_two_lists;
 pub mod min_eating_speed;
 pub mod min_window;
 pub mod minstack;
+pub mod reorder_list;
 pub mod reverse_list;
 pub mod search_matrix;
 pub mod time_map;
@@ -196,7 +197,15 @@ fn main() {
         vec![0, 3, 2, 0],
     ];
     // find_max_fish(grid);
-    let node3 = ListNode::new(3);
+    let node5 = ListNode::new(5);
+    let node4 = ListNode {
+        val: 4,
+        next: Some(Box::new(node5)),
+    };
+    let node3 = ListNode {
+        val: 3,
+        next: Some(Box::new(node4)),
+    };
     let node2 = ListNode {
         val: 2,
         next: Some(Box::new(node3)),
@@ -217,7 +226,9 @@ fn main() {
 
     let mut third_node3 = ListNode::new(2);
     // third_node2.next = Some(Box::new(third_node1.clone()));
-    println!("node {:?}", node1);
+    let mut cloned_node = Some(Box::new(node1.clone()));
+    reorder_list::reorder_list(&mut cloned_node);
+    println!("{:?} reorder", cloned_node);
     let res = running_sum(vec![1, 2, 3, 4]);
     println!("{:?}", res);
     let s = find_pivot_index(vec![1, 7, 3, 6, 5, 6]);
