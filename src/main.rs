@@ -38,6 +38,7 @@ pub mod merge_two_lists;
 pub mod min_eating_speed;
 pub mod min_window;
 pub mod minstack;
+pub mod remove_nth_from_end;
 pub mod reorder_list;
 pub mod reverse_list;
 pub mod search_matrix;
